@@ -1,0 +1,20 @@
+<div *ngIf="event" class="card">
+  <div class="card-image">
+    <figure class="image is-3by4">
+      <img [src]="movie.Poster" />
+    </figure>
+  </div>
+  <div style="color: white" class="card-content">
+    <p style="color: white" class="title is-4">
+      {{ movie.Title }} ({{ movie.Year }})
+    </p>
+
+    <div class="content">
+      {{ movie.Plot }}
+
+      <br />
+      <br />
+      Cast: {{ movie.Actors }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,242 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <h1><strong>MovieTweeter</strong></h1>
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> Docs </a>
+
+        <div class="navbar-dropdown">
+          <a
+            href="https://github.com/MovieTweeter/frontend"
+            class="navbar-item"
+          >
+            frontend
+          </a>
+          <a href="https://github.com/MovieTweeter/backend" class="navbar-item">
+            backend
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a
+            *ngIf="loggedInUser != null && loggedInUser.id == 0"
+            class="button is-primary"
+            (click)="activateSignupModal()"
+          >
+            <strong>Sign up</strong>
+          </a>
+          <button
+            class="button is-light"
+            *ngIf="loggedInUser != null && loggedInUser.id == 0"
+            (click)="activateModal()"
+          >
+            <strong>Sign In</strong>
+          </button>
+          <a
+            *ngIf="loggedInUser != null && loggedInUser.id != 0"
+            class="button is-primary"
+            (click)="activateReviewModal()"
+          >
+            <strong>Create Review</strong>
+          </a>
+          <a
+            *ngIf="loggedInUser != null && loggedInUser.id != 0"
+            class="button is-light"
+            (click)="logoutUser()"
+          >
+            <strong>Sign Out</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div *ngIf="loginModalIsActive" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Login</p>
+      <button
+        (click)="deactivateLoginModal()"
+        class="delete"
+        aria-label="close"
+      ></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="loginUsername"
+            placeholder="username"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input
+            class="input"
+            type="password"
+            [(ngModel)]="loginPassword"
+            placeholder="password"
+          />
+        </div>
+      </div>
+
+      <p *ngIf="invalidLoginAttempt" class="has-text-danger">
+        Invalid username or password
+      </p>
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="loginUser()" class="button is-success">Login</button>
+      <button (click)="deactivateLoginModal()" class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+<div *ngIf="signupModalIsActive" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Signup</p>
+      <button
+        (click)="deactivateSignupModal()"
+        class="delete"
+        aria-label="close"
+      ></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="signupUsername"
+            placeholder="username"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input
+            class="input"
+            type="password"
+            [(ngModel)]="signupPassword"
+            placeholder="password"
+          />
+        </div>
+      </div>
+
+      <p *ngIf="invalidSignupAttempt" class="has-text-danger">
+        Enter username and/or password
+      </p>
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="signupNewUser()" class="button is-success">
+        Signup
+      </button>
+      <button (click)="deactivateSignupModal()" class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+<div *ngIf="reviewModalIsActive" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create New Review</p>
+      <button
+        (click)="deactivateReviewModal()"
+        class="delete"
+        aria-label="close"
+      ></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="reviewTitle"
+            placeholder="My Awesome Review"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Body</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="reviewText"
+            placeholder="Spiderman was awesome!"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Rating (0-5)</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="reviewRating"
+            placeholder="5"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">imdbID</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="reviewMovieId"
+            placeholder="tt112345"
+          />
+        </div>
+      </div>
+
+      <p *ngIf="invalidReviewAttempt" class="has-text-danger">
+        {{ reviewErrorMessage }}
+      </p>
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="createReview()" class="button is-success">
+        Publish
+      </button>
+      <button (click)="deactivateReviewModal()" class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+<app-all-reviews [addedReview]="reviewToAdd"></app-all-reviews>
+<!-- <router-outlet></router-outlet> -->

@@ -1,0 +1,91 @@
+<h1 style="margin-bottom: 5px"><strong>Search Titles</strong></h1>
+<div class="search">
+  <input
+    class="input"
+    type="text"
+    [(ngModel)]="movieSearch"
+    placeholder="Search for a movie"
+  />
+
+  <button
+    style="margin-left: 10px"
+    (click)="searchMovie()"
+    class="button is-success"
+  >
+    Search
+  </button>
+</div>
+<p *ngIf="displayErrorMessage" class="has-text-danger">No results found</p>
+<div *ngIf="searchResults.Search.length > 1">
+  <div *ngFor="let movie of searchResults.Search" class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img [src]="movie.Poster" />
+          </figure>
+        </div>
+        <div class="media-content">
+          <p>
+            <strong style="color: white"
+              >{{ movie.Title }} ({{ movie.Year }})</strong
+            >
+          </p>
+          <p style="color: white">ImdbID: {{ movie.imdbID }}</p>
+        </div>
+      </div>
+      <br />
+
+      <footer class="card-footer">
+        <div class="card-footer-item">
+          <a style="color: white" (click)="selectMovie(movie.imdbID)"
+            >View Details</a
+          >
+        </div>
+        <div class="card-footer-item">
+          <a style="color: white" (click)="filterMovie(movie.imdbID)"
+            >See Reviews</a
+          >
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- <select
+  [(ngModel)]="selectedMovie"
+  (ngModelChange)="selectMovie(selectedMovie)"
+>
+  <option *ngFor="let movie of searchResults.Search" [ngValue]="movie.imdbID">
+    {{ movie.Title }}
+  </option>
+</select> -->
+
+  <!-- <div *ngIf="dropdownActive" class="dropdown is-active">
+    <div class="dropdown-trigger">
+      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+        <span>Select Movie</span>
+        <span class="icon is-small">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+      <div class="dropdown-content">
+        <a
+          *ngFor="let movie of searchResults.Search"
+          (click)="selectMovie(movie.imdbID)"
+          >{{ movie.Title }}</a
+        >
+      </div>
+    </div>
+  </div>
+</div> -->
+  <!-- <ul>
+  <li
+    *ngFor="let movie of searchResults.Search"
+    (click)="selectMovie(movie.imdbID)"
+  >
+    {{ movie.Title }}
+  </li>
+</ul> -->
+</div>

@@ -1,0 +1,7 @@
+.search {
+  display: flex;
+}
+.card {
+  background-color: #6f8ab7;
+  margin: 10px;
+}

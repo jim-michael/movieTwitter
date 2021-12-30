@@ -1,0 +1,22 @@
+.allReview {
+  display: grid;
+  grid-template-columns: 25% auto 25%;
+  grid-template-areas: "featured reviews  search";
+  background-color: #89bbfe;
+}
+
+.reviews {
+  grid-area: reviews;
+  margin: 30px;
+}
+
+.search {
+  grid-area: search;
+  display: inline-block;
+  margin: 30px;
+}
+
+.featured {
+  grid-area: featured;
+  margin: 30px;
+}

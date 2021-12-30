@@ -1,0 +1,16 @@
+<div class="allReview">
+  <app-featured-movie
+    class="featured"
+    [event]="clickedEvent"
+  ></app-featured-movie>
+  <app-review
+    [reviewToAdd]="addedReview"
+    class="reviews"
+    [filterEvent]="clickedFilterEvent"
+  ></app-review>
+  <app-movie-search
+    (selectMovieEvent)="childEventClicked($event)"
+    (filterMovieEvent)="childFilterEventClicked($event)"
+    class="search"
+  ></app-movie-search>
+</div>
