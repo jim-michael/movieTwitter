@@ -1,5 +1,5 @@
 # Movie Reviews
-Social Media application where viewers write their reviews.
+- Social Media application where viewers write their reviews.
 viewers can rate the movies
 viewers can see the posters of reviews
 viewers can search movies by id
