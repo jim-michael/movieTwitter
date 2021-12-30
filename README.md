@@ -7,3 +7,11 @@
 - viewers can see their previous reviews.
 - viewers can see all reviews of other reviewes.
 - viewers can search any movie they like.
+
+## Technology used
+- java
+- Angular
+- Junit
+- Selenium testing.
+- postgres
+- 
