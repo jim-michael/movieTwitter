@@ -14,4 +14,5 @@
 - Junit
 - Selenium testing.
 - postgres
-- 
+- Integration test
+- Spring MVC
